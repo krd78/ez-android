@@ -1,0 +1,22 @@
+services:
+  emulator:
+    build:
+      context: ./android-35
+      args:
+        DEVICE: pixel_7
+        ARCH: x86_64
+        ABI: google_apis
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - android-emulator-data:/root/.android/avd/default.avd
+    environment:
+      DISPLAY: ${DISPLAY}
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+volumes:
+  android-emulator-data:
+    name: "android-emulator-data"
